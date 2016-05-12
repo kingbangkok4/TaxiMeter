@@ -1,8 +1,8 @@
 <?php
 //----------------------------
-$user = "admin";
-$pass = "1234";
-$dbName = "inventory_management";
+$user = "root";
+$pass = "";
+$dbName = "taximeter";
 //----------------------------
 $host = "localhost";
 

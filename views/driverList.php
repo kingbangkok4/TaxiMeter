@@ -1,8 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
-include "./model/member.php";
-$obj = new Member();
-$obj->sql = "select * from member";
+include "./model/driver.php";
+$obj = new Driver();
 $rows = $obj->read();
 //var_dump($rows);
 ?>
@@ -19,11 +18,13 @@ $rows = $obj->read();
                 <tr class="success">
                     <th class="text-center">ลำดับ</th>
                     <th class="text-center">ชื่อคนขับ</th>
-                    <th class="text-center">E-mail</th>
-                    <th class="text-center">เบอร์โทร</th>
-                    <th class="text-center">ที่อยู่</th>
+                    <th class="text-center">รหัสบัตรประชาชน</th>                                   
                     <th class="text-center">เพศ</th>
-					<th class="text-center">ประเภท</th>
+                    <th class="text-center">อายุ</th>
+	            <th class="text-center">วันเกิด</th>
+                    <th class="text-center">ที่อยู่</th>
+                    <th class="text-center">อีเมล์</th>
+                    <th class="text-center">เบอร์โทรศัพท์</th>
                     <th class="text-center">ดำเนินการ</th>
                 </tr>
             </thead>
@@ -35,21 +36,21 @@ $rows = $obj->read();
                         ?>
                         <tr>
                             <td class="text-center"><?= $count++; ?></td>
-                            <td class="text-center"><?= $row["fullname"] ?></td>
-                            <td class="text-center"><?= $row["email"] ?></td>
-                            <td class="text-center"><?= $row["mobile"] ?></td>
-                            <td class="text-center"><?= $row["address"] ?></td>
+                            <td class="text-center"><?= $row["name"] ?></td>
+                            <td class="text-center"><?= $row["idCard"] ?></td>
                             <td class="text-center"><?= $row["gender"] ?></td>
-							<td class="text-center"><?= $row["type"] ?></td>
+                            <td class="text-center"><?= $row["age"] ?></td>
+                            <td class="text-center"><?= $row["birthday"] ?></td>
+			    <td class="text-center"><?= $row["address"] ?></td>
+                            <td class="text-center"><?= $row["email"] ?></td>
+                            <td class="text-center"><?= $row["phone"] ?></td>
                             <td class="text-center">
-                                <a href="index.php?viewName=editEmployee&id=<?= $row["id"] ?>" class="btn btn-sm btn-success">
-							แก้ไข
+                                <a href="index.php?viewName=editDriver&id=<?= $row["id"] ?>" class="btn btn-sm btn-success">
+				   แก้ไข
                                 </a>
-								<?php if($row["type"] == "Staff") {?>
-                                <a onclick="return confirm('ยืนยันการลบคนขับ')" href="deleteEmployee.php?id=<?= $row["id"] ?>" class="btn btn-sm btn-danger">
-                                                                                            ลบ
+                                <a onclick="return confirm('ยืนยันการลบคนขับ')" href="deleteDriver.php?id=<?= $row["id"] ?>" class="btn btn-sm btn-danger">
+                                   ลบ
                                 </a>
-								<?php } ?>
                             </td>
                         </tr>
                         <?php

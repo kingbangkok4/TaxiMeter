@@ -54,7 +54,7 @@ $password = $_REQUEST["password"];
 					$_SESSION["logedIn"] = true;
 					$_SESSION["isAdmin"] = true;
 					$_SESSION["userType"] = "Admin";
-					redirect("index.php?viewName=memberList");
+					redirect("index.php?viewName=driverList");
 				} else {
 					// go to check in database
 					$sql = "select * from user where username = '$username' and password = '$password' ";
@@ -68,7 +68,7 @@ $password = $_REQUEST["password"];
 							$_SESSION["userType"] = $row['type'];
 						}
 						if($_SESSION["userType"] == "Admin"){
-							redirect("index.php?viewName=memberList");
+							redirect("index.php?viewName=driverList");
 						}else{
 							//redirect("index.php?viewName=orderList");
 						}

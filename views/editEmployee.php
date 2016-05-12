@@ -1,5 +1,4 @@
-<?php
-include "./model/employee.php";
+<?php include "./model/employee.php";
 $obj = new Employee();
 $id = $_REQUEST["id"];
 $rows = $obj->read(" e.user_ref = {$_REQUEST["user_ref"]} ");

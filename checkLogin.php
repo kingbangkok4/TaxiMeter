@@ -11,7 +11,7 @@ $password = $_REQUEST["password"];
 
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title> </title>
 		<link href="css/site.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="css/datepicker.css">
@@ -53,13 +53,11 @@ $password = $_REQUEST["password"];
 		   		if ($username == "admin" && $password == "admin") {
 					$_SESSION["logedIn"] = true;
 					$_SESSION["isAdmin"] = true;
-					$_SESSION["userName"] = "Admin";
 					$_SESSION["userType"] = "Admin";
-					redirect("index.php?viewName=employeeList");
+					redirect("index.php?viewName=memberList");
 				} else {
 					// go to check in database
-					$sql = "select * from tb_user where username = '$username' and password = '$password' and type = 'Admin'  ";
-					mysql_query("SET NAMES 'utf8'");
+					$sql = "select * from user where username = '$username' and password = '$password' ";
 					$query = mysql_query($sql);
 					$count = mysql_num_rows($query);
 					//var_dump($count);
@@ -68,12 +66,11 @@ $password = $_REQUEST["password"];
 						$_SESSION["isAdmin"] = true;
 						while ($row = mysql_fetch_assoc($query)) {
 							$_SESSION["userType"] = $row['type'];
-							$_SESSION["userName"] = $row['username'];
 						}
 						if($_SESSION["userType"] == "Admin"){
-							redirect("index.php?viewName=employeeList");
+							redirect("index.php?viewName=memberList");
 						}else{
-							redirect("index.php?viewName=employeeList");
+							//redirect("index.php?viewName=orderList");
 						}
 					} else {
 						echo "msgShow();";

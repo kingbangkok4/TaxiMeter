@@ -10,7 +10,7 @@
                 padding-top: 40px;
                 padding-bottom: 40px;
                 background-color: #eee;
-				background: url('images/bg1.jpg') no-repeat center center fixed;
+				background: url('images/bg0001.jpg') no-repeat center center fixed;
 				-moz-background-size: cover;
 				-webkit-background-size: cover;
 				-o-background-size: cover;
@@ -55,10 +55,10 @@
     </head>
     <body>
     <div class="row">
-    	<div class="col-md-12">
-   		  <h3 class="form-signin-heading" style="margin-left:35px;text-align:center;color:#333"; ><label class="">ระบบคลังสินค้าผลิตภัณฑ์เสริมอาหาร</label>
+    	<div class="col-md-12 text-center">
+            <h3 class="form-signin-heading" style="margin-left:35px;text-align:center;color:#333"; ><label class="">ระบบบริการแท๊กซี่</label></h3>
                 <br /><br />
-   		    <img src="images/1.1.png" width="350" height="250"></h3>
+   		    <img src="images/taxi-cab-service.png" width="600" height="250"></h3>
                 <br />
         </div>
     </div>

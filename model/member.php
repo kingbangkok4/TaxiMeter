@@ -1,11 +1,11 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
-class Employee {
+class Member {
 
     public $sql;
 
     public function insert($data) {
-        $this->sql = "INSERT INTO tb_employee (`id`, `fullname`, `mobile`, `email`, `address`, `title`, `user_ref`, `province`) VALUES (NULL, '{$data["fullname"]}', '{$data["mobile"]}', '{$data["email"]}', '{$data["address"]}', '{$data["title"]}', '{$data["user_ref"]}', '{$data["province"]}') ";
+        $this->sql = "INSERT INTO member (`id`, `fullname`, `mobile`, `email`, `address`, `title`, `user_ref`, `province`) VALUES (NULL, '{$data["fullname"]}', '{$data["mobile"]}', '{$data["email"]}', '{$data["address"]}', '{$data["title"]}', '{$data["user_ref"]}', '{$data["province"]}') ";
         mysql_query("SET NAMES 'utf8'");
 		$query = mysql_query($this->sql);
         if ($query) {
@@ -16,7 +16,7 @@ class Employee {
     }
 
     public function insert_user($username, $password) {
-        $this->sql = "insert into tb_user(id, username, password, type) values(NULL, '$username', '$password',  'สมาชิก')";
+        $this->sql = "insert into user(id, username, password, type) values(NULL, '$username', '$password',  'สมาชิก')";
         mysql_query("SET NAMES 'utf8'");
 		$query = mysql_query($this->sql);
         if ($query) {
@@ -27,13 +27,13 @@ class Employee {
     }
 
     public function update($data, $user_ref) {
-        $this->sql = "UPDATE tb_employee SET fullname = '{$data["fullname"]}', mobile = '{$data["mobile"]}', email = '{$data["email"]}', address='{$data["address"]}', title = '{$data["title"]}' , province = '{$data["province"]}' WHERE user_ref = {$user_ref}";
+        $this->sql = "UPDATE member SET fullname = '{$data["fullname"]}', mobile = '{$data["mobile"]}', email = '{$data["email"]}', address='{$data["address"]}', title = '{$data["title"]}' , province = '{$data["province"]}' WHERE user_ref = {$user_ref}";
         mysql_query("SET NAMES 'utf8'");
 		$query = mysql_query($this->sql);
         
         if ($query){
 
-				$this->sql = "UPDATE tb_user SET username = '{$data["username"]}', password = '{$data["password"]}' WHERE id = {$user_ref} ";
+				$this->sql = "UPDATE user SET username = '{$data["username"]}', password = '{$data["password"]}' WHERE id = {$user_ref} ";
 				mysql_query("SET NAMES 'utf8'");
 				$query = mysql_query($this->sql);
             
@@ -44,7 +44,7 @@ class Employee {
     }
 
     public function delete($condition) {
-        $this->sql = "DELETE FROM tb_employee WHERE {$condition}";
+        $this->sql = "DELETE FROM member WHERE {$condition}";
         mysql_query("SET NAMES 'utf8'");
 		$query = mysql_query($this->sql);
         if ($query) {
@@ -55,7 +55,7 @@ class Employee {
     }
 
     public function read($condition = " 1=1") {
-        $this->sql = "SELECT e.province, e.id, e.fullname, e.mobile, e.email, e.address, e.title, e.user_ref, u.type FROM tb_employee e left outer join tb_user u on e.user_ref = u.id WHERE $condition";
+         $this->sql = "SELECT e.id, e.fullname, e.mobile, e.email, e.address, e.gender, e.user_ref, u.type FROM member e left outer join user u on e.user_ref = u.id WHERE $condition";
 		mysql_query("SET NAMES 'utf8'");
         $query = mysql_query($this->sql);
         if ($query) {
@@ -85,7 +85,7 @@ class Employee {
     }
 
     public function get_user($condition = " 1=1 ") {
-        $this->sql = "SELECT * FROM tb_user WHERE {$condition} ";
+        $this->sql = "SELECT * FROM user WHERE {$condition} ";
         mysql_query("SET NAMES 'utf8'");
 		$query = mysql_query($this->sql);
         if ($query) {
@@ -104,7 +104,7 @@ class Employee {
     }
 		
 	 public function update_type($id, $type) {
-		$this->sql = "UPDATE tb_user SET type = '{$type}' WHERE id = {$id} ";
+		$this->sql = "UPDATE user SET type = '{$type}' WHERE id = {$id} ";
 		mysql_query("SET NAMES 'utf8'");
 		$query = mysql_query($this->sql);
 		
@@ -116,7 +116,7 @@ class Employee {
     }
 	
 	public function get_new_employee_id($condition = " 1=1 "){
-		$this->sql = "SELECT MAX(id) + 1 AS new_employee_id FROM `tb_employee` WHERE {$condition} ";
+		$this->sql = "SELECT MAX(id) + 1 AS new_employee_id FROM `member` WHERE {$condition} ";
 		mysql_query("SET NAMES 'utf8'");
         $query = mysql_query($this->sql);
         if ($query) {
@@ -134,7 +134,7 @@ class Employee {
 	}
 	
 	public function read_employee() {
-        $this->sql = " SELECT e.fullname FROM tb_employee e LEFT OUTER JOIN tb_user u ON e.user_ref = u.id WHERE u.type NOT IN ('Admin', 'ไม่เป็นสมาชิกแล้ว') ORDER BY e.fullname ";
+        $this->sql = " SELECT e.fullname FROM member e LEFT OUTER JOIN user u ON e.user_ref = u.id WHERE u.type NOT IN ('Admin', 'ไม่เป็นสมาชิกแล้ว') ORDER BY e.fullname ";
 		mysql_query("SET NAMES 'utf8'");
         $query = mysql_query($this->sql);
         if ($query) {

@@ -6,7 +6,7 @@ class User {
 
 	
 	 public function delete($condition) {
-        $this->sql = "DELETE FROM tb_user WHERE {$condition}";
+        $this->sql = "DELETE FROM user WHERE {$condition}";
         $query = mysql_query($this->sql);
         if ($query) {
             return true;

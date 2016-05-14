@@ -9,7 +9,7 @@ $rows = $obj->read();
     <h3><label class="label label-warning">ข้อมูลคนขับ</label></h3>
     <br /><br>
     <div class="col-md-12 pull-right">
-    	<a href="index.php?viewName=add_user" class="btn  btn-sm btn-primary pull-right">เพิ่มคนขับ</a>
+    	<a href="index.php?viewName=add_driver" class="btn  btn-sm btn-primary pull-right">เพิ่มคนขับ</a>
     </div>
     <br /><br>
     <div class="table-responsive">
@@ -45,10 +45,10 @@ $rows = $obj->read();
                             <td class="text-center"><?= $row["email"] ?></td>
                             <td class="text-center"><?= $row["phone"] ?></td>
                             <td class="text-center">
-                                <a href="index.php?viewName=editDriver&id=<?= $row["id"] ?>" class="btn btn-sm btn-success">
+                                <a href="index.php?viewName=editDriver&driverID=<?= $row["driverID"] ?>" class="btn btn-sm btn-success">
 				   แก้ไข
                                 </a>
-                                <a onclick="return confirm('ยืนยันการลบคนขับ')" href="deleteDriver.php?id=<?= $row["id"] ?>" class="btn btn-sm btn-danger">
+                                <a onclick="return confirm('ยืนยันการลบคนขับ')" href="deleteDriver.php?driverID=<?= $row["driverID"] ?>" class="btn btn-sm btn-danger">
                                    ลบ
                                 </a>
                             </td>

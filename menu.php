@@ -15,7 +15,7 @@
             <ul class="nav navbar-nav">
                     <?php if($_SESSION["userType"] == "Admin") { ?>
                             <li>
-                                <a href="?viewName=driverList">การเช่า - คืน <span class="sr-only">(current)</span></a>
+                                <a href="?viewName=rentList">การเช่า - คืน <span class="sr-only">(current)</span></a>
                             </li>
                     <?php } ?>    
                      <?php if($_SESSION["userType"] == "Admin") { ?>
@@ -25,7 +25,7 @@
                     <?php } ?>    
                      <?php if($_SESSION["userType"] == "Admin") { ?>
                             <li>
-                                <a href="?viewName=driverList">ข้อมูลรถ <span class="sr-only">(current)</span></a>
+                                <a href="?viewName=carList">ข้อมูลรถ <span class="sr-only">(current)</span></a>
                             </li>
                     <?php } ?>   
                       <?php if($_SESSION["userType"] == "Admin") { ?>
@@ -36,6 +36,21 @@
                       <?php if($_SESSION["userType"] == "Admin") { ?>
                             <li>
                                 <a href="?viewName=driverList">ข้อมูลบริการ <span class="sr-only">(current)</span></a>
+                            </li>
+                    <?php } ?>
+                     <?php if($_SESSION["userType"] != "Admin") { ?>
+                            <li>
+                                <a href="?viewName=mapList">แผนที่ <span class="sr-only">(current)</span></a>
+                            </li>
+                    <?php } ?>
+                     <?php if($_SESSION["userType"] != "Admin") { ?>
+                            <li>
+                                <a href="?viewName=driverList">เลือกแท๊กซี่ (จอง) <span class="sr-only">(current)</span></a>
+                            </li>
+                    <?php } ?>
+                     <?php if($_SESSION["userType"] != "Admin") { ?>
+                            <li>
+                                <a href="?viewName=driverList">ประวัติการใช้บริการ <span class="sr-only">(current)</span></a>
                             </li>
                     <?php } ?>
             </ul>           

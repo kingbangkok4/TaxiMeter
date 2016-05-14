@@ -10,7 +10,7 @@
                 padding-top: 40px;
                 padding-bottom: 40px;
                 background-color: #eee;
-				background: url('images/bg0001.jpg') no-repeat center center fixed;
+				background: url('images/bg0004.jpg') no-repeat center center fixed;
 				-moz-background-size: cover;
 				-webkit-background-size: cover;
 				-o-background-size: cover;

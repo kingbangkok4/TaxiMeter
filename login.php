@@ -1,7 +1,7 @@
 <!doctype>
 <html>
     <head>
-        <title></title>
+        <title>ระบบบริการแท๊กซี่</title>
         <meta charset="utf-8" />
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
@@ -69,6 +69,8 @@
                 <label for="inputPassword" class="sr-only">รหัสผ่าน</label>
                 <input type="password" name="password" id="inputPassword" class="form-control" placeholder="พิมพ์รหัสผ่าน" required="">
                 <button class="btn btn-lg btn-success btn-block" type="submit">เข้าสู่ระบบ</button>
+                <br /><br />
+                <a href="register.php" class="btn btn-lg btn-warning btn-block">สมัครสมาชิก</a>
             </form>
 
         </div>

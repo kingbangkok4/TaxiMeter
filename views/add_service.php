@@ -5,6 +5,7 @@
         $objService = new Service();
         
         $rows_service = $objService->read_taxi(" c.status = 'ปกติ' AND r.status = 'ยังไม่ได้คืนรถ' ");
+        //$id = $_SESSION["id"];
 ?>
 
 <script type="text/javascript">
@@ -86,7 +87,7 @@
 </script>
 
 <div class="container">
-    <form action="doAddRent.php" method="post" class="form form-horizontal" style="font-size:12px;">
+    <form action="doAddService.php" method="post" class="form form-horizontal" style="font-size:12px;">     
         <fieldset>
             <legend>
                 เลือกแท๊กซี่เพื่อใช้บริการ

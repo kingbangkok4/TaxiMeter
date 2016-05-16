@@ -17,7 +17,7 @@ $data = array(
     "shift" => $_REQUEST["shift"]
 );
 
- $checkRent = $obj->read(" carID = {$data["carID"]} AND rentDate >= '{$data["dateFrom"]}' AND returnDate <= '{$data["dateTo"]}' AND shift = '{$data["shift"]}' ");         
+ $checkRent = $obj->read(" carID = {$data["carID"]} AND DATE_FORMAT(rentDate,'%Y-%m-%d') <= '{$data["dateFrom"]}' AND DATE_FORMAT(returnDate,'%Y-%m-%d') >= '{$data["dateTo"]}' AND shift = '{$data["shift"]}' ");         
 ?>
 
 <html>

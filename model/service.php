@@ -3,23 +3,26 @@ header('Content-Type: text/html; charset=utf-8');
 class Service {
     public $sql;
 
-    public function read($condition = " 1=1") {
+    public function read($condition = "1=1") {
          $this->sql = "SELECT "
                  . "s.serviceDate, "
+                 . "s.status, "
                  . "c.carID, "
                  . "c.brand, "
                  . "c.licensePlate, "
                  . "d.driverID, "
-                 . "d.name, "
-                 . "d.idCard "
-                 . "m.memberID "
-                 . "m.name "
-                 . "m.gender "
-                 . "m.email "
+                 . "d.name AS name_driver, "
+                 . "d.idCard, "
+                 . "m.memberID, "
+                 . "m.name AS name_member, "
+                 . "m.gender, "
+                 . "m.email, "
                  . "m.phone "
                  . "FROM service s left outer join car c ON s.carID = c.carID "
-                 . "left outer join driver d ON s.driverID = d.driverID left outer join member m ON s.memberID = m.memberID  "
-                 . "WHERE $condition";
+                 . "left outer join driver d ON s.driverID = d.driverID left outer join member m ON s.memberID = m.memberID  "                
+                 . "WHERE $condition "
+                 . "ORDER BY serviceID ";
+         
 		mysql_query("SET NAMES 'utf8'");
         $query = mysql_query($this->sql);
         if ($query) {
@@ -56,18 +59,18 @@ class Service {
     }	
     
     public function insert($data) {
-        $this->sql = "INSERT INTO rent (`rentID`, `carID`, `driverID`, `rentDate`, `returnDate`, `price`, `shift`) VALUES (NULL, {$data["carID"]}, {$data["driverID"]}, '{$data["dateFrom"]}', '{$data["dateTo"]}', {$data["price"]}, '{$data["shift"]}')";
+        $this->sql = "INSERT INTO service (`serviceID`, `carID`, `driverID`, `serviceDate`, `memberID`, `status`) VALUES (NULL, {$data["carID"]}, {$data["driverID"]}, '{$data["serviceDate"]}', '{$data["memberID"]}', 'กำลังให้บริการ') ";
         mysql_query("SET NAMES 'utf8'");
-		$query = mysql_query($this->sql);
+	    $query = mysql_query($this->sql);
         if ($query) {
-            return true;
+            return TRUE;
         } else {
-            return false;
+            return FALSE;
         }
     }
     
-    public function update_status($rentID) {
-        $this->sql = "UPDATE rent SET status = 'คืนรถแล้ว' WHERE rentID = '{$rentID}' ";
+    public function update_status($serviceID) {
+        $this->sql = "UPDATE service SET status = 'สิ้นสุดการให้บริการ' WHERE serviceID = '{$serviceID}' ";
         mysql_query("SET NAMES 'utf8'");
 	$query = mysql_query($this->sql);       
         if ($query) {

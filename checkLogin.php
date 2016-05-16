@@ -54,6 +54,7 @@ $password = $_REQUEST["password"];
 					$_SESSION["logedIn"] = true;
 					$_SESSION["isAdmin"] = true;
 					$_SESSION["userType"] = "Admin";
+                                        $_SESSION["id"] = 0;
 					redirect("index.php?viewName=rentList");
 				} else {
 					// go to check in database
@@ -64,12 +65,19 @@ $password = $_REQUEST["password"];
 					if ($count > 0) {
 						$_SESSION["logedIn"] = true;
 						$_SESSION["isAdmin"] = true;
+                                                $user_ref = 0;
 						while ($row = mysql_fetch_assoc($query)) {
 							$_SESSION["userType"] = $row['type'];
-						}
-						if($_SESSION["userType"] == "Admin"){
-							redirect("index.php?viewName=rentList");
+                                                        $user_ref = $row['userID'];
+						}       
+						if($_SESSION["userType"] == "Admin"){						
+                                                        redirect("index.php?viewName=rentList");
 						}else{
+                                                        $sql = "select * from member where user_ref  = {$user_ref} ";
+                                                        $query = mysql_query($sql);
+                                                        while ($row = mysql_fetch_assoc($query)) {
+                                                            $_SESSION["id"] = $row['memberID'];
+                                                        }
 							redirect("index.php?viewName=mapList");
 						}
 					} else {

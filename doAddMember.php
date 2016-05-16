@@ -45,12 +45,37 @@ $checkUser = $obj_user->read(" username = '{$_REQUEST["username"]}' ");
             </form>
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        
+        <div class="modal fade" tabindex="-1" role="dialog"  id="successModal" name="successModal">
+          <div class="modal-dialog">
+          <form class="form-horizontal" role="form" method="post" action="login.php">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">สถานะการสมัครสมาชิก</h4>
+              </div>
+              <div class="modal-body">
+                <p style="text-align:center">สมัครสมาชิกสำเร็จ กรุณาเข้าสู่ระบบเพื่อใช้งานได้ </p>
+              </div>
+              <div class="modal-footer">
+                 <input type="submit" value="OK" id="submit" name="submit" class="btn btn-primary">
+              </div>
+            </div><!-- /.modal-content -->
+            </form>
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
 	<script type="text/javascript">
             function msgShow(){
                 //alert("hello world");
                 $('#myModal').modal('toggle');
                 $('#myModal').modal('show');
+                //$('#myModal').modal('hide');
+            }
+            
+            function successShow(){
+                //alert("hello world");
+                $('#successModal').modal('toggle');
+                $('#successModal').modal('show');
                 //$('#myModal').modal('hide');
             }
 
@@ -66,10 +91,12 @@ $checkUser = $obj_user->read(" username = '{$_REQUEST["username"]}' ");
                             "address" => $_REQUEST["address"]." จ.".$_REQUEST["province"],
                             "email" => $_REQUEST["email"],
                             "phone" => $_REQUEST["mobile"],
-                            "user_ref" => $_REQUEST["user_ref"]
+                            "user_ref" => $user_refID
                         );
-                        $emp->insert($data);
-                        redirect("login.php");
+                        $obj_member->insert($data);
+
+                        //redirect("login.php");
+                         echo "successShow();";
                     }
                 } else {                       
                     echo "msgShow();";

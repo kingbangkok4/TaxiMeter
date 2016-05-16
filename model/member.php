@@ -22,11 +22,11 @@ class Member {
     public function insert($data) {
         $this->sql = "INSERT INTO member (`memberID`, `name`, `gender`, `address`, `email`, `phone`, `user_ref`) VALUES (NULL, '{$data["name"]}', '{$data["gender"]}', '{$data["address"]}', '{$data["email"]}', '{$data["phone"]}', {$data["user_ref"]}) ";
         mysql_query("SET NAMES 'utf8'");
-		$query = mysql_query($this->sql);
+	$query = mysql_query($this->sql);
         if ($query) {
             return true;
         } else {
-            return FALSE;
+            return  $this->sql;
         }
     }
 
@@ -37,9 +37,9 @@ class Member {
         
         if ($query){
 
-				$this->sql = "UPDATE user SET username = '{$data["username"]}', password = '{$data["password"]}' WHERE id = {$user_ref} ";
-				mysql_query("SET NAMES 'utf8'");
-				$query = mysql_query($this->sql);
+                $this->sql = "UPDATE user SET username = '{$data["username"]}', password = '{$data["password"]}' WHERE id = {$user_ref} ";
+                mysql_query("SET NAMES 'utf8'");
+                $query = mysql_query($this->sql);
             
                 return true;
         } else {

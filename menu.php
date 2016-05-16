@@ -50,7 +50,7 @@
                     <?php } ?>
                      <?php if($_SESSION["userType"] != "Admin") { ?>
                             <li>
-                                <a href="?viewName=driverList">ประวัติการใช้บริการ <span class="sr-only">(current)</span></a>
+                                <a href="?viewName=serviceList">ประวัติการใช้บริการ <span class="sr-only">(current)</span></a>
                             </li>
                     <?php } ?>
             </ul>           

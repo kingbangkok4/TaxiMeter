@@ -4,7 +4,22 @@ class Service {
     public $sql;
 
     public function read($condition = " 1=1") {
-         $this->sql = "SELECT s.serviceDate, c.carID, c.brand, c.licensePlate, d.driverID, d.name, d.idCard  FROM service s left outer join  WHERE $condition";
+         $this->sql = "SELECT "
+                 . "s.serviceDate, "
+                 . "c.carID, "
+                 . "c.brand, "
+                 . "c.licensePlate, "
+                 . "d.driverID, "
+                 . "d.name, "
+                 . "d.idCard "
+                 . "m.memberID "
+                 . "m.name "
+                 . "m.gender "
+                 . "m.email "
+                 . "m.phone "
+                 . "FROM service s left outer join car c ON s.carID = c.carID "
+                 . "left outer join driver d ON s.driverID = d.driverID left outer join member m ON s.memberID = m.memberID  "
+                 . "WHERE $condition";
 		mysql_query("SET NAMES 'utf8'");
         $query = mysql_query($this->sql);
         if ($query) {
@@ -26,14 +41,7 @@ class Service {
                  . "d.driverID, "
                  . "d.name, "
                  . "d.idCard "
-                 . "m.memberID "
-                 . "m.name "
-                 . "m.gender "
-                 . "m.email "
-                 . "m.phone "
-                 . "FROM rent r left outer join car c ON s.carID = c.carID "
-                 . "left outer join driver d ON s.driverID = d.driverID left outer join member m ON s.memberID = m.memberID  "
-                 . "WHERE $condition";
+                 . "FROM rent r left outer join car c ON r.carID = c.carID left outer join driver d ON r.driverID = d.driverID WHERE $condition";
 		mysql_query("SET NAMES 'utf8'");
         $query = mysql_query($this->sql);
         if ($query) {

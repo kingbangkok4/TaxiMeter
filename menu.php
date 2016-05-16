@@ -45,7 +45,7 @@
                     <?php } ?>
                      <?php if($_SESSION["userType"] != "Admin") { ?>
                             <li>
-                                <a href="?viewName=driverList">เลือกแท๊กซี่ (จอง) <span class="sr-only">(current)</span></a>
+                                <a href="?viewName=add_service">เลือกแท๊กซี่ (จอง) <span class="sr-only">(current)</span></a>
                             </li>
                     <?php } ?>
                      <?php if($_SESSION["userType"] != "Admin") { ?>

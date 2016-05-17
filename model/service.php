@@ -5,6 +5,7 @@ class Service {
 
     public function read($condition = "1=1") {
          $this->sql = "SELECT "
+                 . "s.serviceID, "
                  . "s.serviceDate, "
                  . "s.status, "
                  . "c.carID, "
@@ -21,7 +22,7 @@ class Service {
                  . "FROM service s left outer join car c ON s.carID = c.carID "
                  . "left outer join driver d ON s.driverID = d.driverID left outer join member m ON s.memberID = m.memberID  "                
                  . "WHERE $condition "
-                 . "ORDER BY serviceID ";
+                 . "ORDER BY serviceID DESC ";
          
 		mysql_query("SET NAMES 'utf8'");
         $query = mysql_query($this->sql);
@@ -70,7 +71,7 @@ class Service {
     }
     
     public function update_status($serviceID) {
-        $this->sql = "UPDATE service SET status = 'สิ้นสุดการให้บริการ' WHERE serviceID = '{$serviceID}' ";
+        $this->sql = "UPDATE service SET status = 'สิ้นสุดการให้บริการ' WHERE serviceID = {$serviceID} ";
         mysql_query("SET NAMES 'utf8'");
 	$query = mysql_query($this->sql);       
         if ($query) {
@@ -78,6 +79,17 @@ class Service {
         } else {
             return false;
         }
+    }
+    
+    public function delete($serviceID) {
+        $this->sql = "DELETE FROM service WHERE serviceID = {$serviceID} ";
+        $query = mysql_query($this->sql);
+        if ($query) {
+            return true;
+        } else {
+            return false;
+        }
+	
     }
     
 }

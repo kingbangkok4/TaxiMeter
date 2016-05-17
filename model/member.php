@@ -31,27 +31,24 @@ class Member {
     }
 
     public function update($data, $user_ref) {
-        $this->sql = "UPDATE member SET fullname = '{$data["fullname"]}', mobile = '{$data["mobile"]}', email = '{$data["email"]}', address='{$data["address"]}', title = '{$data["title"]}' , province = '{$data["province"]}' WHERE user_ref = {$user_ref}";
+        $this->sql = "UPDATE member SET name = '{$data["name"]}', gender = '{$data["gender"]}', address = '{$data["address"]}', email='{$data["email"]}', phone = '{$data["phone"]}' WHERE user_ref = {$user_ref} ";
         mysql_query("SET NAMES 'utf8'");
-		$query = mysql_query($this->sql);
-        
-        if ($query){
-
-                $this->sql = "UPDATE user SET username = '{$data["username"]}', password = '{$data["password"]}' WHERE id = {$user_ref} ";
-                mysql_query("SET NAMES 'utf8'");
-                $query = mysql_query($this->sql);
-            
-                return true;
+	$query = mysql_query($this->sql);       
+        if ($query){           
+            return true;
         } else {
             return false;
         }
     }
 
-    public function delete($condition) {
-        $this->sql = "DELETE FROM member WHERE {$condition}";
+    public function delete($user_ref) {
+        $this->sql = "DELETE FROM member WHERE user_ref = {$user_ref} ";
         mysql_query("SET NAMES 'utf8'");
-		$query = mysql_query($this->sql);
+	$query = mysql_query($this->sql);
         if ($query) {
+            $this->sql = "DELETE FROM user WHERE userID = {$user_ref} ";
+            mysql_query("SET NAMES 'utf8'");
+            $query = mysql_query($this->sql);          
             return true;
         } else {
             return false;

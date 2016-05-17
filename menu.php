@@ -30,12 +30,12 @@
                     <?php } ?>   
                       <?php if($_SESSION["userType"] == "Admin") { ?>
                             <li>
-                                <a href="?viewName=driverList">ข้อมูลลูกค้า <span class="sr-only">(current)</span></a>
+                                <a href="?viewName=memberList">ข้อมูลลูกค้า <span class="sr-only">(current)</span></a>
                             </li>
                     <?php } ?>
                       <?php if($_SESSION["userType"] == "Admin") { ?>
                             <li>
-                                <a href="?viewName=driverList">ข้อมูลบริการ <span class="sr-only">(current)</span></a>
+                                <a href="?viewName=serviceList">ข้อมูลบริการ <span class="sr-only">(current)</span></a>
                             </li>
                     <?php } ?>
                      <?php if($_SESSION["userType"] != "Admin") { ?>

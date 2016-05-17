@@ -2,7 +2,11 @@
 header('Content-Type: text/html; charset=utf-8');
 include "./model/service.php";
 $obj = new Service();
-$rows = $obj->read(" s.memberID =  {$_SESSION["id"]} ");
+$condition = " 1 ";
+if($_SESSION["userType"] <> "Admin") { 
+    $condition = " s.memberID =  {$_SESSION["id"]} ";
+}
+$rows = $obj->read($condition);
 //echo " WHERE s.memberID =  {$_SESSION["id"]} ";
 //var_dump($rows);
 ?>
@@ -25,7 +29,9 @@ $rows = $obj->read(" s.memberID =  {$_SESSION["id"]} ");
 	            <th class="text-center">ชื่อผู้ใช้บริการ</th>
                     <th class="text-center">วันที่ใช้บริการ</th>
                     <th class="text-center">สถานะ</th>
-                    <th class="text-center">ดำเนินการ</th>
+                    <?php if($_SESSION["userType"] == "Admin") { ?>
+                        <th class="text-center">ดำเนินการ</th>
+                    <?php } ?>
                 </tr>
             </thead>
             <tbody>
@@ -43,14 +49,18 @@ $rows = $obj->read(" s.memberID =  {$_SESSION["id"]} ");
                             <td class="text-center"><?= $row["name_member"] ?></td>
 			    <td class="text-center"><?= $row["serviceDate"] ?></td>
                             <td class="text-center"><?= $row["status"] ?></td>
-                            <td class="text-center">
-                                <a href="index.php?viewName=editDriver&driverID=<?= $row["driverID"] ?>" class="btn btn-sm btn-success">
-				   แก้ไข
-                                </a>
-                                <a onclick="return confirm('ยืนยันการลบคนขับ')" href="deleteDriver.php?driverID=<?= $row["driverID"] ?>" class="btn btn-sm btn-danger">
-                                   ลบ
-                                </a>
-                            </td>
+                            <?php if($_SESSION["userType"] == "Admin") { ?>
+                                <td class="text-center">
+                                    <?php if($row["status"] == "กำลังให้บริการ") { ?>
+                                        <a href="doUpdateStatusService.php?serviceID=<?= $row["serviceID"] ?>" class="btn btn-sm btn-success">
+                                           สิ้นสุดการให้บริการ
+                                        </a>
+                                        <a onclick="return confirm('ยืนยันการยกเลิกให้บริการ')" href="deleteService.php?serviceID=<?= $row["serviceID"] ?>" class="btn btn-sm btn-danger">
+                                           ยกเลิก
+                                        </a>
+                                     <?php } ?>   
+                               </td>                           
+                         <?php } ?>   
                         </tr>
                         <?php
                     }

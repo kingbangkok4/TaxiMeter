@@ -1,4 +1,5 @@
-<?php include "./model/driver.php";
+<?php 
+   include "./model/driver.php";
     $obj = new Driver();
     $driverID = $_REQUEST["driverID"];
     $rows = $obj->read(" driverID = {$driverID} ");

@@ -29,7 +29,29 @@ class Car {
             return false;
         }
     }
+    
+    public function update($data, $carID) {
+        $this->sql = "UPDATE car SET brand = '{$data["brand"]}', licensePlate = '{$data["licensePlate"]}', status = '{$data["status"]}' WHERE carID = {$carID} ";
+	mysql_query("SET NAMES 'utf8'");
+        $query = mysql_query($this->sql);
+        if ($query) {
+            return true;
+        } else {
+            return false;
+        }
+    }	
 	
+    public function delete($carID) {
+        $this->sql = "DELETE FROM car WHERE carID = {$carID} ";
+        mysql_query("SET NAMES 'utf8'");
+	$query = mysql_query($this->sql);
+        if ($query) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 }
 
 ?>

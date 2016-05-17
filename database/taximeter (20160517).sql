@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2016 at 02:04 AM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.5.30
+-- Generation Time: May 17, 2016 at 05:22 AM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 5.5.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -39,7 +39,7 @@ CREATE TABLE `car` (
 
 INSERT INTO `car` (`carID`, `brand`, `licensePlate`, `status`) VALUES
 (2, 'TOYOTA', 'มง 5699', 'ปกติ'),
-(3, 'HONDA', 'กก 3t462462', 'ปกติ');
+(3, 'HONDA', 'กก 3t46246255', 'ซ่อมบำรุง');
 
 -- --------------------------------------------------------
 
@@ -207,10 +207,10 @@ CREATE TABLE `rent` (
 INSERT INTO `rent` (`rentID`, `carID`, `driverID`, `rentDate`, `returnDate`, `price`, `shift`, `status`) VALUES
 (1, 2, 1, '2016-05-14', '2016-05-14', 1000, 'เช้า', 'คืนรถแล้ว'),
 (2, 2, 1, '2016-05-14', '2016-05-14', 500, 'เช้า', 'ยังไม่ได้คืนรถ'),
-(3, 2, 1, '2016-05-14', '2016-05-14', 1000, 'เช้า', 'ยังไม่ได้คืนรถ'),
-(4, 2, 1, '2016-05-14', '2016-05-14', 500, 'บ่าย', 'ยังไม่ได้คืนรถ'),
-(5, 2, 1, '2016-05-14', '2016-05-14', 500, 'เย็น', 'ยังไม่ได้คืนรถ'),
-(6, 2, 1, '2016-05-16', '2016-05-25', 1000, 'เช้า', 'ยังไม่ได้คืนรถ');
+(3, 2, 1, '2016-05-14', '2016-05-14', 1000, 'เช้า', 'คืนรถแล้ว'),
+(4, 2, 1, '2016-05-14', '2016-05-14', 500, 'บ่าย', 'คืนรถแล้ว'),
+(5, 2, 1, '2016-05-14', '2016-05-14', 500, 'เย็น', 'คืนรถแล้ว'),
+(6, 2, 1, '2016-05-16', '2016-05-25', 1000, 'เช้า', 'คืนรถแล้ว');
 
 -- --------------------------------------------------------
 
@@ -223,8 +223,16 @@ CREATE TABLE `service` (
   `driverID` int(11) NOT NULL,
   `carID` int(11) NOT NULL,
   `serviceDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `memberID` int(11) NOT NULL,
   `status` enum('กำลังให้บริการ','สิ้นสุดการให้บริการ') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`serviceID`, `driverID`, `carID`, `serviceDate`, `memberID`, `status`) VALUES
+(6, 1, 2, '2016-05-17 02:00:12', 2, 'สิ้นสุดการให้บริการ');
 
 -- --------------------------------------------------------
 
@@ -301,7 +309,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `car`
 --
 ALTER TABLE `car`
-  MODIFY `carID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `carID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `driver`
 --
@@ -326,7 +334,7 @@ ALTER TABLE `rent`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `serviceID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `serviceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user`
 --

@@ -30,4 +30,15 @@ class User {
         }
     }
     
+    public function update($data, $user_ref) {
+        $this->sql = "UPDATE user SET username = '{$data["username"]}', password = '{$data["password"]}' WHERE userID = {$user_ref} ";
+	mysql_query("SET NAMES 'utf8'");
+        $query = mysql_query($this->sql);
+        if ($query) {
+            return true;
+        } else {
+            return false;
+        }
+    }	
+    
 }
